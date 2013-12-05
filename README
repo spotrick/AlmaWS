@@ -1,0 +1,22 @@
+NAME
+    AlmaWS
+
+DESCRIPTION
+    Perl modules for using Alma Web services. Currently only User services
+    are implemented.
+
+    There are three modules:
+
+    Alma::UserWS implements the basic user web services, get, update, create
+    and delete.
+
+    Alma::Connector provides the interface between UserWS and Alma.
+
+    Alma::User provides some handy utilities for using the Alma user record.
+
+AUTHOR
+    Steve Thomas <stephen.thomas@adelaide.edu.au>
+
+VERSION
+    This is version 2013.12.05
+
