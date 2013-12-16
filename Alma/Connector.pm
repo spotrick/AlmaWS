@@ -35,11 +35,11 @@ sub Version { $VERSION; }
 
 ## Very Private credentials for connecting and requesting
 
-my $host = 'ap01.alma.exlibrisgroup.com';
+my $host = '****.alma.exlibrisgroup.com';
 my $path = '/almaws/repository/';
-my $inst = '61ADELAIDE_INST';
-my $user = 'passepartout';
-my $pass = 'We.l1ke.cak3';
+my $inst = '**********';
+my $user = '**********';
+my $pass = '**********';
 
 sub makeRequest {
     my ( $service, $message ) = @_;
