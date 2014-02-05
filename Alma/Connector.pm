@@ -1,36 +1,10 @@
 package Alma::Connector;
 
-=head1 NAME
-
-Alma::Connector.pm
-
-=head1 USAGE
-
-    use Alma::Connector;
-
-Build a web service request using
-
-    $message = Alma::Connect::buildMessage( $service, $arg0, ... );
-
-Make the actual request and return the response using
-
-    $result = Alma::Connect::makeRequest( $service, $message );
-
-=head1 AUTHOR
-
-Steve Thomas <stephen.thomas@adelaide.edu.au>
-
-=head1 VERSION
-
-This is version 2013.07.24
-
-=cut
-
 require Exporter;
 @ISA = Exporter;
 @EXPORT = qw( buildMessage makeRequest );
 
-$Alma::Connector::VERSION = "2013.07.24";
+$Alma::Connector::VERSION = "2014.02.05";
 sub Version { $VERSION; }
 
 ## Very Private credentials for connecting and requesting
@@ -65,7 +39,9 @@ sub makeRequest {
     }
 
     my $xml = $response->{_content};
-    $xml =~ s/&lt;/</gs; $xml =~ s/&gt;/>/gs;
+    $xml =~ s/&lt;/</gs;
+    $xml =~ s/&gt;/>/gs;
+    $xml =~ s/&quot;/"/gs;
 
     for ($xml) {
 	if ( /<errorsExist>false<\/errorsExist/ ) {
@@ -106,3 +82,47 @@ $arglist
 1;
 
 __END__
+
+
+=head1 NAME
+
+Alma::Connector.pm
+
+=head1 SYNOPSIS
+
+    use Alma::Connector;
+    ...
+    $message = Alma::Connect::buildMessage( $service, $arg0, ... );
+    $result = Alma::Connect::makeRequest( $service, $message );
+
+=head1 DESCRIPTION
+
+Provides a connection with Alma web services, and makes requests.
+
+=head1 METHODS
+
+=over
+
+=item * buildMessage
+
+    my $message = Alma::Connect::buildMessage( $service, $arg0, ... );
+
+builds a service request message with the argument(s) provided.
+
+=item * makeRequest
+
+    my $result = Alma::Connect::makeRequest( $service, $message );
+
+makes the actual request and return the response.
+
+=back
+
+=head1 AUTHOR
+
+Steve Thomas <stephen.thomas@adelaide.edu.au>
+
+=head1 VERSION
+
+This is version 2014.02.05
+
+=cut
